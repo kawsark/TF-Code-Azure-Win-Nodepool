@@ -68,15 +68,16 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
       enabled                    = true
       log_analytics_workspace_id = azurerm_log_analytics_workspace.insights.id
     }
+
   }
 
   # RBAC and Azure AD Integration Block
   role_based_access_control {
     enabled = true
-    azure_active_directory {
-      managed = true
-      admin_group_object_ids = [azuread_group.aks_administrators.id]
-    }
+    #azure_active_directory {
+    #  managed = true
+    #  admin_group_object_ids = [azuread_group.aks_administrators.id]
+    #}
   }
 
   # Windows Profile
@@ -91,7 +92,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     load_balancer_sku = "Standard"
   }
 
-  tags = {
-    Environment = var.environment
-  }
+
+  tags = var.tags
+
 }

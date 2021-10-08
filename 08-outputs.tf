@@ -49,3 +49,10 @@ output "aks_cluster_name" {
 output "aks_cluster_kubernetes_version" {
   value = azurerm_kubernetes_cluster.aks_cluster.kubernetes_version
 }
+
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config_raw
+
+  sensitive = true
+}
+
